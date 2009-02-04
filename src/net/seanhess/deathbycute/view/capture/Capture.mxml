@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
+	width="100%" height="100%"
+	keyDown="onKeyDown(event)"
+	click="onClick(event)"
+	>
+	
+	<mx:Metadata>
+		[Event("move")]
+		[Event("shoot")]
+	</mx:Metadata>
+	
+	<mx:Point id="location"/>
+	
+	<mx:Script>
+		<![CDATA[
+			private function onKeyDown(event:KeyboardEvent):void
+			{
+				location = new Point(mouseX, mouseY);
+				dispatchEvent(new Event("shoot"));
+			}
+			
+			private function onClick(event:MouseEvent):void
+			{
+				location = new Point(mouseX, mouseY);
+				dispatchEvent(new Event("move"));
+			}
+		]]>
+	</mx:Script>
+	
+</mx:Canvas>

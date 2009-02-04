@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	width="100%" height="100%" 
+	xmlns:components="net.seanhess.deathbycute.view.components.*" 
+	xmlns:render="net.seanhess.deathbycute.view.render.*"
+	xmlns:control="net.seanhess.deathbycute.control.*"
+	>
+	<mx:Script>
+		<![CDATA[
+			import assets.Other;
+			import net.seanhess.deathbycute.model.Token;
+			import assets.Characters;
+		]]>
+	</mx:Script>
+	
+	<control:Actions id="actions"/>
+	<control:Movement id="movement"/>
+	
+	<mx:VBox>
+		<render:TokenView token="{new Token(Characters.BOY)}"/>
+		<render:TokenView token="{new Token(Other.CIRCLE)}"/>
+	</mx:VBox> 
+</mx:Canvas>

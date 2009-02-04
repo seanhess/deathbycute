@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Image xmlns:mx="http://www.adobe.com/2006/mxml" 
+	maxWidth="80" maxHeight="80" 
+	xmlns:model="net.seanhess.deathbycute.model.*"
+	source="{token.image}"
+	>
+	
+	<model:Token id="token"/>
+	
+</mx:Image>
