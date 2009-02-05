@@ -2,7 +2,6 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
 	xmlns:model="net.seanhess.deathbycute.model.*"
 	creationComplete="onComplete()"
-	enabled="{token.state != Character.DEAD}"
 	>
 	
 	<mx:Script>
@@ -71,7 +70,7 @@
 	
 	<mx:Binding source="token.desintation" destination="destination"/>
 	
-	<mx:Image source="{token.image}"/>
+	<mx:Image source="{token.image}" alpha="{(token.state == Character.DEAD) ? 0.6 : 1}"/>
 	<mx:Image source="{Other.DEATH_EYES}" visible="{token.state == Character.DEAD}"/>
 	
 	<mx:Parallel id="animate" target="{this}" effectEnd="onEnd()">
