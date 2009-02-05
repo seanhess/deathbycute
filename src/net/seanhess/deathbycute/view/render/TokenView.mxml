@@ -64,11 +64,11 @@
 			
 			protected function onEnd():void
 			{
-				// set firing to false // 
-				if (token is Weapon)
-				{
-					(token as Weapon).owner.firing = null;
-				}
+//				// set firing to false // 
+//				if (token is Weapon)
+//				{
+//					(token as Weapon).owner.firing = null;
+//				}
 			}
 				
 		]]>

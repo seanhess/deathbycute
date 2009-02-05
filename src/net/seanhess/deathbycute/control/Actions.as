@@ -24,18 +24,28 @@ package net.seanhess.deathbycute.control
 		
 		public function shoot(location:Point):void
 		{
-			// can only shoot 1 at a time //
-			// When it removes itself, it is responsible for removing from the tokens thing? //
-			if (character.active && !character.firing)
+			if (character.active)
 			{
+				character.weapon.desintation = new Point(location.x, location.y);
 				character.weapon.state = Token.NONE;
-				character.firing = character.weapon;
-				character.firing.location = new Point(character.location.x, character.location.y); // (Actually, I need it to start at the current spot) 
-				character.firing.desintation = new Point(location.x, location.y);
 				
-				if (!tokens.contains(character.firing))
-					tokens.addItem(character.firing);
-			} 
+				if (!tokens.contains(character.weapon))
+				{
+					character.weapon.location = new Point(character.location.x, character.location.y);
+					tokens.addItem(character.weapon);
+				}
+			}
+
+//			if (character.active && !character.firing)
+//			{
+//				character.weapon.state = Token.NONE;
+//				character.firing = character.weapon;
+//				character.firing.location = new Point(character.location.x, character.location.y); // (Actually, I need it to start at the current spot) 
+//				character.firing.desintation = new Point(location.x, location.y);
+//				
+//				if (!tokens.contains(character.firing))
+//					tokens.addItem(character.firing);
+//			} 
 		}
 		
 		public function kill(character:Character):void

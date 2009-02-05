@@ -23,14 +23,14 @@ package net.seanhess.deathbycute.control
 		
 		public function test():void
 		{
-			if (views && character && character.firing)
+			if (views && character && character.weapon)
 			{
 				for (var token:Object in views)
 				{
-					if (character.firing == token)
+					if (character.weapon == token)
 						continue;
 
-					var weaponView:TokenView = views[character.firing];
+					var weaponView:TokenView = views[character.weapon];
 					var otherTokenView:TokenView = views[token];
 						
 					if (!weaponView || !otherTokenView)
@@ -49,7 +49,7 @@ package net.seanhess.deathbycute.control
 					{
 						// block both weapons
 						block(token as Weapon);
-						block(character.firing as Weapon);
+						block(character.weapon);
 					}
 				}
 			}
