@@ -2,31 +2,9 @@
 <mx:Canvas 
 	xmlns:mx="http://www.adobe.com/2006/mxml" 
 	width="100%" height="100%" 
-	xmlns:components="net.seanhess.deathbycute.view.components.*" 
-	xmlns:render="net.seanhess.deathbycute.view.render.*"
-	xmlns:control="net.seanhess.deathbycute.control.*"
-	xmlns:capture="net.seanhess.deathbycute.view.capture.*" xmlns:model="net.seanhess.deathbycute.model.*" xmlns:test="net.seanhess.deathbycute.test.*"
-	xmlns:board="net.seanhess.deathbycute.view.board.*"
 	clipContent="false"
-	>
-	<mx:Script>
-		<![CDATA[
-			import assets.Other;
-			import net.seanhess.deathbycute.model.Token;
-			import assets.Characters;
-		]]>
-	</mx:Script>
+	xmlns:view="net.seanhess.deathbycute.view.*">
 	
-	<!-- Model -->
-	<test:MockData id="mock"/>
-	<model:Game id="game" mockData="{mock}"/>
+	<view:GameView />
 	
-	<!-- Controllers -->
-	<control:Actions id="actions" character="{game.currentPlayer.character}" tokens="{game.tokens}"/>
-	
-	<!-- The View -->
-	<board:TokenBoard id="board" tokens="{game.tokens}" character="{game.currentPlayer.character}" collision="actions.kill(board.collided)" block="actions.block(board.blockedWeapon)"/>	
-	
-	<!-- Capture -->
-	<capture:Capture id="capture" moveCharacter="actions.move(capture.location)" shootWeapon="actions.shoot(capture.location)"/>
 </mx:Canvas>

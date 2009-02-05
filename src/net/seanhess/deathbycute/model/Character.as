@@ -9,7 +9,7 @@ package net.seanhess.deathbycute.model
 		
 		public function Character()
 		{
-			this.weapon = new Weapon(Weapons.GEM);
+			this.weapon = new Weapon(Weapons.BUG);
 			this.state = ALIVE;
 		}
 		
