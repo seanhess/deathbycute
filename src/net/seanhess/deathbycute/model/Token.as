@@ -18,7 +18,7 @@ package net.seanhess.deathbycute.model
 		
 		public var image:Class = Other.CIRCLE;
 		public var location:Point = new Point(0, 0);
-		public var desintation:Point = null;
+		public var destination:Point = null;
 		public var moving:Boolean = false;
 		
 		public var movement:String = LINEAR;

@@ -10,5 +10,8 @@ package assets
 		
 		[Embed("/assets/image/Flat Death Eyes.png")]
 		public static const DEATH_EYES:Class;
+		
+		[Embed("/assets/image/clock.png")]
+		public static const TIMER:Class;
 	}
 }

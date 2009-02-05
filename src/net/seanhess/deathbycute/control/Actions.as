@@ -19,14 +19,14 @@ package net.seanhess.deathbycute.control
 		public function move(location:Point):void
 		{
 			if (character.active)
-				character.desintation = new Point(location.x, location.y);
+				character.destination = new Point(location.x, location.y);
 		}
 		
 		public function shoot(location:Point):void
 		{
-			if (character.active)
+			if (character.active && character.weapon.state != Weapon.BLOCKED)
 			{
-				character.weapon.desintation = new Point(location.x, location.y);
+				character.weapon.destination = new Point(location.x, location.y);
 				character.weapon.state = Token.NONE;
 				
 				if (!tokens.contains(character.weapon))
@@ -56,7 +56,10 @@ package net.seanhess.deathbycute.control
 		
 		public function block(weapon:Weapon):void
 		{
-			weapon.state = Weapon.BLOCKED; // Yes? We really just want it to stop somehow
+			weapon.state = Weapon.BLOCKED; // Yes? We really just want it to stop somehow 
+			
+			if (weapon.owner)
+				weapon.destination = new Point(weapon.owner.location.x, weapon.owner.location.y);
 		}
 	}
 }

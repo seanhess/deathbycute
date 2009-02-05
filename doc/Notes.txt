@@ -1,0 +1,4 @@
+
+ [   ]	When a weapon is blocked, it becomes inactive for X seconds
+ [   ]  Add login
+ [   ]	Start adding Cocomo

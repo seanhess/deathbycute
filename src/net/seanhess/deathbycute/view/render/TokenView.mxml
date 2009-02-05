@@ -2,7 +2,7 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
 	xmlns:model="net.seanhess.deathbycute.model.*"
 	creationComplete="onComplete()"
-	>
+	xmlns:utils="flash.utils.*">
 	
 	<mx:Script>
 		<![CDATA[
@@ -12,10 +12,14 @@
 			import mx.effects.easing.Linear;
 			public static const MS_PER_PIXEL:int = 1;
 			
+			protected var timer:Timer = new Timer(3000);
+			
 			protected var complete:Boolean = false;
 			
 			protected function onComplete():void
 			{
+				timer.addEventListener(TimerEvent.TIMER, onTimerComplete, false, 0, true);
+				
 				this.x = token.location.x;
 				this.y = token.location.y;
 				complete = true;
@@ -25,7 +29,15 @@
 			public function set state(value:String):void
 			{
 				if (value == Weapon.BLOCKED)
-					animate.stop();
+				{
+					timer.reset();
+					timer.start();	
+				}
+			}
+			
+			protected function onTimerComplete(event:Event):void
+			{
+				token.state = Token.NONE;
 			}
 			
 			public function set destination(value:Point):void
@@ -35,10 +47,10 @@
 			
 			protected function restartAnimation():void
 			{
-				if (complete == false || token.desintation == null)
+				if (complete == false || token.destination == null)
 					return;
 				
-				var value:Point = token.desintation;
+				var value:Point = token.destination;
 				
 				animate.stop();
 				
@@ -73,14 +85,15 @@
 				
 		]]>
 	</mx:Script>
-	
+		
 	<mx:Number id="hitSize">{token is Weapon ? 25 : 40}</mx:Number>
-	<mx:Binding source="token.desintation" destination="destination"/>
+	<mx:Binding source="token.destination" destination="destination"/>
 	<mx:Binding source="token.state" destination="state"/>
 	
 	<mx:Image source="{token.image}" alpha="{(token.state == Character.DEAD) ? 0.6 : 1}"/>
 	<mx:Image source="{Other.DEATH_EYES}" visible="{token.state == Character.DEAD}"/>
-	<mx:Canvas id="hit" width="{hitSize}" height="{hitSize}" backgroundColor="#0000FF" verticalCenter="0" horizontalCenter="0"/>
+	<mx:Image source="{Other.TIMER}" visible="{token.state == Weapon.BLOCKED}" verticalCenter="0" horizontalCenter="0"/>
+	<mx:Canvas id="hit" width="{hitSize}" height="{hitSize}" backgroundColor="#0000FF" backgroundAlpha="0" verticalCenter="0" horizontalCenter="0"/>
 	
 	<mx:Parallel id="animate" target="{this}" effectEnd="onEnd()">
 		<mx:AnimateProperty id="goX" property="x" easingFunction="{Linear.easeNone}" tweenUpdate="onTweenUpdate()"/>
