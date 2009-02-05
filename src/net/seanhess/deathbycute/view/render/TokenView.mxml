@@ -2,6 +2,7 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
 	xmlns:model="net.seanhess.deathbycute.model.*"
 	creationComplete="onComplete()"
+	enabled="{token.state != Character.DEAD}"
 	>
 	
 	<mx:Script>
@@ -70,8 +71,8 @@
 	
 	<mx:Binding source="token.desintation" destination="destination"/>
 	
-	<mx:Image source="{token.image}" horizontalCenter="0" verticalCenter="0"/>
-	<mx:Image source="{Other.SPLAT}" horizontalCenter="0" verticalCenter="0" visible="{token.state == Character.DEAD}"/>
+	<mx:Image source="{token.image}"/>
+	<mx:Image source="{Other.DEATH_EYES}" visible="{token.state == Character.DEAD}"/>
 	
 	<mx:Parallel id="animate" target="{this}" effectEnd="onEnd()">
 		<mx:AnimateProperty id="goX" property="x" easingFunction="{Linear.easeNone}" tweenUpdate="onTweenUpdate()"/>

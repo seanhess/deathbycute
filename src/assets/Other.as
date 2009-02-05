@@ -7,5 +7,8 @@ package assets
 		
 		[Embed("/assets/image/splat.png")]
 		public static const SPLAT:Class;
+		
+		[Embed("/assets/image/Flat Death Eyes.png")]
+		public static const DEATH_EYES:Class;
 	}
 }
