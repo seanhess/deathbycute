@@ -2,25 +2,36 @@ package net.seanhess.deathbycute.control
 {
 	import flash.geom.Point;
 	
+	import mx.collections.ArrayCollection;
+	
 	import net.seanhess.deathbycute.model.Character;
-	import net.seanhess.deathbycute.model.Weapon;
 	
 	/**
 	 * Makes the changes necessary for user actions
 	 */
-	public class Actions
+	public class Actions 
 	{
 		public var character:Character;
+		public var tokens:ArrayCollection; 
 		
 		public function move(location:Point):void
 		{
-			character.desintation = location;
+			character.desintation = new Point(location.x, location.y);
 		}
 		
 		public function shoot(location:Point):void
 		{
-			character.firing = character.weapon;
-			character.firing.desintation = location; 
+			// can only shoot 1 at a time //
+			// When it removes itself, it is responsible for removing from the tokens thing? //
+			if (!character.firing)
+			{
+				character.firing = character.weapon;
+				character.firing.location = new Point(character.location.x, character.location.y); // (Actually, I need it to start at the current spot) 
+				character.firing.desintation = new Point(location.x, location.y);
+				
+				if (!tokens.contains(character.firing))
+					tokens.addItem(character.firing);
+			} 
 		}
 	}
 }

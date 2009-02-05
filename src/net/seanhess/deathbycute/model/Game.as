@@ -7,14 +7,14 @@ package net.seanhess.deathbycute.model
 	[Bindable]
 	public class Game
 	{
-		public var characters:ArrayCollection;
 		public var players:ArrayCollection;
-		
+		public var tokens:ArrayCollection;
+
 		public var currentPlayer:Player = new Player();
 		
 		public function set mockData(value:MockData):void
 		{
-			this.characters = value.characters;
+			this.tokens = value.tokens;
 			this.players = value.players;
 			this.currentPlayer = value.currentPlayer;
 		}

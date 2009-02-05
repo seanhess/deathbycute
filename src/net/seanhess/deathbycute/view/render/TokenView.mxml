@@ -2,37 +2,82 @@
 <mx:Image xmlns:mx="http://www.adobe.com/2006/mxml" 
 	xmlns:model="net.seanhess.deathbycute.model.*"
 	source="{token.image}"
+	creationComplete="onComplete()"
+	doubleClickEnabled="true"
+	doubleClick="onDoubleClick()"
 	>
 	
 	<mx:Script>
 		<![CDATA[
+			import net.seanhess.deathbycute.model.Weapon;
 			import mx.effects.easing.Linear;
 			public static const MS_PER_PIXEL:int = 1;
+			
+			protected var complete:Boolean = false;
+			
+			protected function onComplete():void
+			{
+				this.x = token.location.x;
+				this.y = token.location.y;
+				complete = true;
+				restartAnimation();
+			}
+			
+			protected function onDoubleClick():void
+			{
+				
+			}
 		
 			public function set destination(value:Point):void
 			{
+				restartAnimation();
+			}
+			
+			protected function restartAnimation():void
+			{
+				if (complete == false || token.desintation == null)
+					return;
+				
+				var value:Point = token.desintation;
+				
 				animate.stop();
 				
-				var totalDistance:int = Math.abs(value.x - x) + Math.abs(value.y - y);
+				var totalDistance:int = Math.abs(value.x - token.location.x) + Math.abs(value.y - token.location.y);
 				
-				goX.fromValue = x;
+				goX.fromValue = token.location.x;
 				goX.toValue = value.x - (width/2);
-				goX.duration = MS_PER_PIXEL * totalDistance;
+				goX.duration = MS_PER_PIXEL * totalDistance; 
 				
 				
-				goY.fromValue = y;
+				goY.fromValue = token.location.y;
 				goY.toValue = value.y - (height/2);
 				goY.duration = MS_PER_PIXEL * totalDistance;
 				
 				animate.play();
 			}
+			
+			protected function onTweenUpdate():void
+			{
+				token.location.x = this.x;
+				token.location.y = this.y;
+			}
+			
+			protected function onEnd():void
+			{
+				// set firing to false // 
+				if (token is Weapon)
+				{
+					(token as Weapon).owner.firing = null;
+				}
+			}
+				
 		]]>
 	</mx:Script>
 	
 	<mx:Binding source="token.desintation" destination="destination"/>
 	
-	<mx:Parallel id="animate" target="{this}">
-		<mx:AnimateProperty id="goX" property="x" easingFunction="{Linear.easeNone}"/>
+	<mx:Parallel id="animate" target="{this}" effectEnd="onEnd()">
+		<mx:AnimateProperty id="goX" property="x" easingFunction="{Linear.easeNone}" tweenUpdate="onTweenUpdate()"/>
 		<mx:AnimateProperty id="goY" property="y" easingFunction="{Linear.easeNone}"/>
 	</mx:Parallel>
 	

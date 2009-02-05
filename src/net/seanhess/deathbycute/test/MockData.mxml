@@ -7,7 +7,8 @@
 		]]>
 	</mx:Script>
 	
-	<mx:ArrayCollection id="characters">
+	<!-- Start out with two tokens = characters -->
+	<mx:ArrayCollection id="tokens">
 		<model:Character id="boy" image="{Characters.BOY}"/>
 		<model:Character id="girl" image="{Characters.HORN_GIRL}"/>
 	</mx:ArrayCollection>

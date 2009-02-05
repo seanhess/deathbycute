@@ -22,11 +22,13 @@
 	<model:Game id="game" mockData="{mock}"/>
 	
 	<!-- Controllers -->
-	<control:Actions id="actions" character="{game.currentPlayer.character}"/>
+	<control:Actions id="actions" character="{game.currentPlayer.character}" tokens="{game.tokens}"/>
 	
 	<!-- The View -->
 	<!-- This accurately creates tokens for each person -->
-	<board:TokenBoard tokens="{game.characters}"/>	
+	<!-- All I need for weapons is to add to the tokens array collection passed in -->
+	<!-- Hmm, how can I do that? -->
+	<board:TokenBoard tokens="{game.tokens}"/>	
 	
 	<!-- Capture -->
 	<capture:Capture id="capture" moveCharacter="actions.move(capture.location)" shootWeapon="actions.shoot(capture.location)"/>
