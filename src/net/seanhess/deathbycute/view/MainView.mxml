@@ -25,7 +25,7 @@
 	<control:Actions id="actions" character="{game.currentPlayer.character}" tokens="{game.tokens}"/>
 	
 	<!-- The View -->
-	<board:TokenBoard id="board" tokens="{game.tokens}" character="{game.currentPlayer.character}" collision="actions.kill(board.collided)"/>	
+	<board:TokenBoard id="board" tokens="{game.tokens}" character="{game.currentPlayer.character}" collision="actions.kill(board.collided)" block="actions.block(board.blockedWeapon)"/>	
 	
 	<!-- Capture -->
 	<capture:Capture id="capture" moveCharacter="actions.move(capture.location)" shootWeapon="actions.shoot(capture.location)"/>

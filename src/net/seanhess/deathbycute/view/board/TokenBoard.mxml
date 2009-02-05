@@ -9,13 +9,16 @@
 	
 	<mx:Metadata>
 		[Event("collision")]
+		[Event("block")]
 	</mx:Metadata>
 	
 	<model:Character id="character"/>
-	<control:Collisions id="collisions" character="{character}" views="{views}" collision="dispatchEvent(event)"/>
+	<control:Collisions id="collisions" character="{character}" views="{views}" collision="dispatchEvent(event)" block="dispatchEvent(event)"/>
 	<model:Character id="collided"/>
+	<model:Weapon id="blockedWeapon"/>
 	
 	<mx:Binding source="collisions.collided" destination="collided"/>
+	<mx:Binding source="collisions.blockedWeapon" destination="blockedWeapon"/>
 
 	<mx:Script>
 		<![CDATA[

@@ -22,6 +22,12 @@
 				restartAnimation();
 			}
 			
+			public function set state(value:String):void
+			{
+				if (value == Weapon.BLOCKED)
+					animate.stop();
+			}
+			
 			public function set destination(value:Point):void
 			{
 				restartAnimation();
@@ -69,6 +75,7 @@
 	</mx:Script>
 	
 	<mx:Binding source="token.desintation" destination="destination"/>
+	<mx:Binding source="token.state" destination="state"/>
 	
 	<mx:Image source="{token.image}" alpha="{(token.state == Character.DEAD) ? 0.6 : 1}"/>
 	<mx:Image source="{Other.DEATH_EYES}" visible="{token.state == Character.DEAD}"/>

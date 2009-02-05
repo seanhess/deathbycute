@@ -3,7 +3,7 @@
 	
 	<mx:Script>
 		<![CDATA[
-			import assets.Characters;
+			import assets.*;
 			import flash.geom.Point;
 		]]>
 	</mx:Script>
@@ -11,6 +11,7 @@
 	<!-- Start out with two tokens = characters -->
 	<mx:ArrayCollection id="tokens">
 		<model:Character id="boy" image="{Characters.BOY}"/>
+		<model:Weapon id="testWeapon" image="{Weapons.BUG}" location="{new Point(700,100)}"/>
 		<model:Character id="girl" image="{Characters.HORN_GIRL}" location="{new Point(600,400)}"/>
 	</mx:ArrayCollection>
 	

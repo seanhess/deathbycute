@@ -5,6 +5,8 @@ package net.seanhess.deathbycute.control
 	import mx.collections.ArrayCollection;
 	
 	import net.seanhess.deathbycute.model.Character;
+	import net.seanhess.deathbycute.model.Token;
+	import net.seanhess.deathbycute.model.Weapon;
 	
 	/**
 	 * Makes the changes necessary for user actions and events
@@ -26,6 +28,7 @@ package net.seanhess.deathbycute.control
 			// When it removes itself, it is responsible for removing from the tokens thing? //
 			if (character.active && !character.firing)
 			{
+				character.weapon.state = Token.NONE;
 				character.firing = character.weapon;
 				character.firing.location = new Point(character.location.x, character.location.y); // (Actually, I need it to start at the current spot) 
 				character.firing.desintation = new Point(location.x, location.y);
@@ -39,6 +42,11 @@ package net.seanhess.deathbycute.control
 		{
 			// kill them // 
 			character.state = Character.DEAD;
+		}
+		
+		public function block(weapon:Weapon):void
+		{
+			weapon.state = Weapon.BLOCKED; // Yes? We really just want it to stop somehow
 		}
 	}
 }

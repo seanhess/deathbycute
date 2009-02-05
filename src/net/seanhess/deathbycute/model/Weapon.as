@@ -4,11 +4,10 @@ package net.seanhess.deathbycute.model
 	
 	public class Weapon extends Token
 	{
+		public static const BLOCKED:String = "blocked";
+		
 		public var owner:Character;
 	
-		public static const BUG:Weapon = new Weapon(Weapons.BUG);
-		public static const GEM:Weapon = new Weapon(Weapons.GEM);
-		
 		public function Weapon(image:Class=null)
 		{
 			super(image);
