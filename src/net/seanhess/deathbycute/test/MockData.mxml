@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Object xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:model="net.seanhess.deathbycute.model.*">
+	
+	<mx:Script>
+		<![CDATA[
+			import assets.Characters;
+		]]>
+	</mx:Script>
+	
+	<mx:ArrayCollection id="characters">
+		<model:Character id="boy" image="{Characters.BOY}"/>
+		<model:Character id="girl" image="{Characters.HORN_GIRL}"/>
+	</mx:ArrayCollection>
+	
+	<mx:ArrayCollection id="players">
+		<model:Player id="currentPlayer" character="{boy}"/>
+		<model:Player character="{girl}"/>
+	</mx:ArrayCollection>
+	
+</mx:Object>

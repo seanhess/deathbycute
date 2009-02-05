@@ -20,7 +20,8 @@ package net.seanhess.deathbycute.model
 		
 		public function Token(image:Class=null)
 		{
-			this.image = image;
+			if (image)
+				this.image = image;
 		}
 	}
 }

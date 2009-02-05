@@ -8,5 +8,10 @@ package net.seanhess.deathbycute.model
 	
 		public static const BUG:Weapon = new Weapon(Weapons.BUG);
 		public static const GEM:Weapon = new Weapon(Weapons.GEM);
+		
+		public function Weapon(image:Class=null)
+		{
+			super(image);
+		}
 	}
 }

@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
 	width="100%" height="100%"
-	keyDown="onKeyDown(event)"
 	click="onClick(event)"
 	>
 	
 	<mx:Metadata>
-		[Event("move")]
-		[Event("shoot")]
+		[Event("moveCharacter")]
+		[Event("shootWeapon")]
 	</mx:Metadata>
 	
 	<mx:Point id="location"/>
 	
 	<mx:Script>
 		<![CDATA[
-			private function onKeyDown(event:KeyboardEvent):void
-			{
-				location = new Point(mouseX, mouseY);
-				dispatchEvent(new Event("shoot"));
-			}
-			
 			private function onClick(event:MouseEvent):void
 			{
+				if (event.shiftKey)
+					shootWeapon();
+					
+				else
+					moveCharacter();
+			}
+			
+			private function moveCharacter():void
+			{
 				location = new Point(mouseX, mouseY);
-				dispatchEvent(new Event("move"));
+				dispatchEvent(new Event("moveCharacter"));
+			}
+			
+			private function shootWeapon():void
+			{
+				location = new Point(mouseX, mouseY);
+				dispatchEvent(new Event("shootWeapon"));
 			}
 		]]>
 	</mx:Script>

@@ -5,7 +5,8 @@
 	xmlns:components="net.seanhess.deathbycute.view.components.*" 
 	xmlns:render="net.seanhess.deathbycute.view.render.*"
 	xmlns:control="net.seanhess.deathbycute.control.*"
-	>
+	xmlns:capture="net.seanhess.deathbycute.view.capture.*" xmlns:model="net.seanhess.deathbycute.model.*" xmlns:test="net.seanhess.deathbycute.test.*"
+	xmlns:board="net.seanhess.deathbycute.view.board.*">
 	<mx:Script>
 		<![CDATA[
 			import assets.Other;
@@ -14,11 +15,17 @@
 		]]>
 	</mx:Script>
 	
-	<control:Actions id="actions"/>
-	<control:Movement id="movement"/>
+	<!-- Model -->
+	<test:MockData id="mock"/>
+	<model:Game id="game" mockData="{mock}"/>
 	
-	<mx:VBox>
-		<render:TokenView token="{new Token(Characters.BOY)}"/>
-		<render:TokenView token="{new Token(Other.CIRCLE)}"/>
-	</mx:VBox> 
+	<!-- Controllers -->
+	<control:Actions id="actions" character="{game.currentPlayer.character}"/>
+	
+	<!-- The View -->
+	<!-- This accurately creates tokens for each person -->
+	<board:TokenBoard tokens="{game.characters}"/>	
+	
+	<!-- Capture -->
+	<capture:Capture id="capture" moveCharacter="actions.move(capture.location)" shootWeapon="actions.shoot(capture.location)"/>
 </mx:Canvas>

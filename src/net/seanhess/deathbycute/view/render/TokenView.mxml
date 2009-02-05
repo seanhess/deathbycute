@@ -1,9 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Image xmlns:mx="http://www.adobe.com/2006/mxml" 
-	maxWidth="80" maxHeight="80" 
 	xmlns:model="net.seanhess.deathbycute.model.*"
 	source="{token.image}"
 	>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.effects.easing.Linear;
+			public static const MS_PER_PIXEL:int = 1;
+		
+			public function set destination(value:Point):void
+			{
+				animate.stop();
+				
+				var totalDistance:int = Math.abs(value.x - x) + Math.abs(value.y - y);
+				
+				goX.fromValue = x;
+				goX.toValue = value.x;
+				goX.duration = MS_PER_PIXEL * totalDistance;
+				
+				
+				goY.fromValue = y;
+				goY.toValue = value.y;
+				goY.duration = MS_PER_PIXEL * totalDistance;
+				
+				animate.play();
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:Binding source="token.desintation" destination="destination"/>
+	
+	<mx:Parallel id="animate" target="{this}">
+		<mx:AnimateProperty id="goX" property="x" easingFunction="{Linear.easeNone}"/>
+		<mx:AnimateProperty id="goY" property="y" easingFunction="{Linear.easeNone}"/>
+	</mx:Parallel>
 	
 	<model:Token id="token"/>
 	

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:control="net.seanhess.deathbycute.control.*">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.events.CollectionEvent;
+			import net.seanhess.deathbycute.view.render.TokenView;
+			import net.seanhess.deathbycute.model.Token;
+		
+			[Bindable]
+			private var views:Dictionary = new Dictionary(true);
+			
+			[Bindable]
+			public function set tokens(value:ArrayCollection):void
+			{
+				if (value)
+				{
+					value.addEventListener(CollectionEvent.COLLECTION_CHANGE, onChange);
+				}
+				
+				_tokens = value;
+				tokenChange = true;
+				invalidateProperties();
+			}
+			
+			public function get tokens():ArrayCollection
+			{
+				return _tokens;
+			}
+			
+			protected function onChange(event:CollectionEvent):void
+			{
+				tokenChange = true;
+				invalidateProperties();
+			}
+		
+			private function update():void
+			{
+				var token:Object;
+				
+				// Scan through the list of tokens in the collection
+				for each (token in tokens)
+				{
+					if (views[token] == null)
+					{
+						var view:TokenView = new TokenView();
+							view.token = token as Token;
+						
+						addChild(view);
+						
+						views[token] = view;
+					}
+				}
+				
+				// Scan through the list of views currently added 
+				for (token in views)
+				{
+					if (!tokens.contains(token))
+					{
+						removeChild(views[token]);
+						delete views[token];
+					}
+				}
+			}
+			
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				
+				if (tokenChange)
+				{
+					tokenChange = false;
+					update();
+				}
+			}
+			
+			protected var tokenChange:Boolean = false;
+			protected var _tokens:ArrayCollection;
+			
+		]]>
+	</mx:Script>
+	
+</mx:Canvas>
