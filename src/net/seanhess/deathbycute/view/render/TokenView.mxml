@@ -16,12 +16,12 @@
 				var totalDistance:int = Math.abs(value.x - x) + Math.abs(value.y - y);
 				
 				goX.fromValue = x;
-				goX.toValue = value.x;
+				goX.toValue = value.x - (width/2);
 				goX.duration = MS_PER_PIXEL * totalDistance;
 				
 				
 				goY.fromValue = y;
-				goY.toValue = value.y;
+				goY.toValue = value.y - (height/2);
 				goY.duration = MS_PER_PIXEL * totalDistance;
 				
 				animate.play();

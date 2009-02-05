@@ -6,7 +6,9 @@
 	xmlns:render="net.seanhess.deathbycute.view.render.*"
 	xmlns:control="net.seanhess.deathbycute.control.*"
 	xmlns:capture="net.seanhess.deathbycute.view.capture.*" xmlns:model="net.seanhess.deathbycute.model.*" xmlns:test="net.seanhess.deathbycute.test.*"
-	xmlns:board="net.seanhess.deathbycute.view.board.*">
+	xmlns:board="net.seanhess.deathbycute.view.board.*"
+	clipContent="false"
+	>
 	<mx:Script>
 		<![CDATA[
 			import assets.Other;
