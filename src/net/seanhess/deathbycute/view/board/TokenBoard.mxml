@@ -3,7 +3,19 @@
 	width="100%" height="100%" 
 	xmlns:control="net.seanhess.deathbycute.control.*"
 	clipContent="false"
+	xmlns:model="net.seanhess.deathbycute.model.*"
+	enterFrame="collisions.test()"
 	>
+	
+	<mx:Metadata>
+		[Event("collision")]
+	</mx:Metadata>
+	
+	<model:Character id="character"/>
+	<control:Collisions id="collisions" character="{character}" views="{views}" collision="dispatchEvent(event)"/>
+	<model:Character id="collided"/>
+	
+	<mx:Binding source="collisions.collided" destination="collided"/>
 
 	<mx:Script>
 		<![CDATA[

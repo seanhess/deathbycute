@@ -7,7 +7,7 @@ package net.seanhess.deathbycute.control
 	import net.seanhess.deathbycute.model.Character;
 	
 	/**
-	 * Makes the changes necessary for user actions
+	 * Makes the changes necessary for user actions and events
 	 */
 	public class Actions 
 	{
@@ -16,14 +16,15 @@ package net.seanhess.deathbycute.control
 		
 		public function move(location:Point):void
 		{
-			character.desintation = new Point(location.x, location.y);
+			if (character.active)
+				character.desintation = new Point(location.x, location.y);
 		}
 		
 		public function shoot(location:Point):void
 		{
 			// can only shoot 1 at a time //
 			// When it removes itself, it is responsible for removing from the tokens thing? //
-			if (!character.firing)
+			if (character.active && !character.firing)
 			{
 				character.firing = character.weapon;
 				character.firing.location = new Point(character.location.x, character.location.y); // (Actually, I need it to start at the current spot) 
@@ -32,6 +33,12 @@ package net.seanhess.deathbycute.control
 				if (!tokens.contains(character.firing))
 					tokens.addItem(character.firing);
 			} 
+		}
+		
+		public function kill(character:Character):void
+		{
+			// kill them // 
+			character.state = Character.DEAD;
 		}
 	}
 }

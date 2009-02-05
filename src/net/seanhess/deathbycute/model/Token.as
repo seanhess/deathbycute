@@ -11,6 +11,11 @@ package net.seanhess.deathbycute.model
 		public static const CIRCULAR:String = "circular";
 		public static const ERRATIC:String = "erratic";
 		
+		
+		public static const NONE:String = "none";
+		
+		public var state:String = NONE;
+		
 		public var image:Class = Other.CIRCLE;
 		public var location:Point = new Point(0, 0);
 		public var desintation:Point = null;

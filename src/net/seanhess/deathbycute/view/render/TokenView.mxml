@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Image xmlns:mx="http://www.adobe.com/2006/mxml" 
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
 	xmlns:model="net.seanhess.deathbycute.model.*"
-	source="{token.image}"
 	creationComplete="onComplete()"
-	doubleClickEnabled="true"
-	doubleClick="onDoubleClick()"
 	>
 	
 	<mx:Script>
 		<![CDATA[
-			import net.seanhess.deathbycute.model.Weapon;
+			import net.seanhess.deathbycute.model.*;
+			import assets.Other;
+			
 			import mx.effects.easing.Linear;
 			public static const MS_PER_PIXEL:int = 1;
 			
@@ -23,11 +22,6 @@
 				restartAnimation();
 			}
 			
-			protected function onDoubleClick():void
-			{
-				
-			}
-		
 			public function set destination(value:Point):void
 			{
 				restartAnimation();
@@ -76,6 +70,9 @@
 	
 	<mx:Binding source="token.desintation" destination="destination"/>
 	
+	<mx:Image source="{token.image}" horizontalCenter="0" verticalCenter="0"/>
+	<mx:Image source="{Other.SPLAT}" horizontalCenter="0" verticalCenter="0" visible="{token.state == Character.DEAD}"/>
+	
 	<mx:Parallel id="animate" target="{this}" effectEnd="onEnd()">
 		<mx:AnimateProperty id="goX" property="x" easingFunction="{Linear.easeNone}" tweenUpdate="onTweenUpdate()"/>
 		<mx:AnimateProperty id="goY" property="y" easingFunction="{Linear.easeNone}"/>
@@ -83,4 +80,4 @@
 	
 	<model:Token id="token"/>
 	
-</mx:Image>
+</mx:Canvas>

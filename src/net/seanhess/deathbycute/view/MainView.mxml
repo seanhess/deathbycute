@@ -25,10 +25,7 @@
 	<control:Actions id="actions" character="{game.currentPlayer.character}" tokens="{game.tokens}"/>
 	
 	<!-- The View -->
-	<!-- This accurately creates tokens for each person -->
-	<!-- All I need for weapons is to add to the tokens array collection passed in -->
-	<!-- Hmm, how can I do that? -->
-	<board:TokenBoard tokens="{game.tokens}"/>	
+	<board:TokenBoard id="board" tokens="{game.tokens}" character="{game.currentPlayer.character}" collision="actions.kill(board.collided)"/>	
 	
 	<!-- Capture -->
 	<capture:Capture id="capture" moveCharacter="actions.move(capture.location)" shootWeapon="actions.shoot(capture.location)"/>
