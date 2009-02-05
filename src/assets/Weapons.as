@@ -6,6 +6,6 @@ package assets
 		public static const BUG:Class;
 
 		[Embed("/assets/planetcute/Gem Orange.png")]
-		public static const GEM:Class;
+		public static const GEM:Class; 
 	}
 }

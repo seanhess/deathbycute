@@ -36,7 +36,7 @@ package net.seanhess.deathbycute.control
 					if (!weaponView || !otherTokenView)
 						continue;
 						
-					if (!weaponView.hitTestObject(otherTokenView))
+					if (!weaponView.hit.hitTestObject(otherTokenView.hit))
 						continue;
 
 					if (token is Character && token != character)

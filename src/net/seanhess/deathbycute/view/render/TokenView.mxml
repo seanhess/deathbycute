@@ -74,11 +74,13 @@
 		]]>
 	</mx:Script>
 	
+	<mx:Number id="hitSize">{token is Weapon ? 25 : 40}</mx:Number>
 	<mx:Binding source="token.desintation" destination="destination"/>
 	<mx:Binding source="token.state" destination="state"/>
 	
 	<mx:Image source="{token.image}" alpha="{(token.state == Character.DEAD) ? 0.6 : 1}"/>
 	<mx:Image source="{Other.DEATH_EYES}" visible="{token.state == Character.DEAD}"/>
+	<mx:Canvas id="hit" width="{hitSize}" height="{hitSize}" backgroundColor="#0000FF" verticalCenter="0" horizontalCenter="0"/>
 	
 	<mx:Parallel id="animate" target="{this}" effectEnd="onEnd()">
 		<mx:AnimateProperty id="goX" property="x" easingFunction="{Linear.easeNone}" tweenUpdate="onTweenUpdate()"/>
