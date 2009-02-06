@@ -31,7 +31,7 @@ package net.seanhess.deathbycute.model
 		{
 			this.tokens = value.tokens;
 			this.players = value.players;
-			this.currentPlayer = value.currentPlayer;
+//			this.currentPlayer = value.currentPlayer;
 		}
 	}
 }

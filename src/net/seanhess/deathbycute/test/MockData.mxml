@@ -10,13 +10,13 @@
 	
 	<!-- Start out with two tokens = characters -->
 	<mx:ArrayCollection id="tokens">
-		<model:Character id="boy" image="{Characters.BOY}"/>
+		<model:Character id="boy" image="{Characters.BOY}" location="{new Point(256,400)}"/>
 		<model:Weapon id="testWeapon" image="{Weapons.BUG}" location="{new Point(700,100)}"/>
 		<model:Character id="girl" image="{Characters.HORN_GIRL}" location="{new Point(600,400)}"/>
 	</mx:ArrayCollection>
 	
 	<mx:ArrayCollection id="players">
-		<model:Player id="currentPlayer" character="{boy}"/>
+		<model:Player character="{boy}"/>
 		<model:Player character="{girl}"/>
 	</mx:ArrayCollection>
 	

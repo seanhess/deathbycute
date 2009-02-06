@@ -1,5 +1,6 @@
 
  [ √ ]	When a weapon is blocked, it becomes inactive for X seconds
- [   ]	Select Character
- [   ]  Add login
- [   ]	Start adding Cocomo
+ [ √ ]	Select Character
+ [ √ ]  Add login
+ [	 ]	Need to do something about the "location" -- it shouldn't be updated every frame
+ [   ]	Start adding Cocomo!

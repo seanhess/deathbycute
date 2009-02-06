@@ -18,8 +18,8 @@
 	</mx:Script>
 	
 	<!-- Model -->
-	<!--<test:MockData id="mock"/>-->
-	<model:Game id="game"/>
+	<test:MockData id="mock"/>
+	<model:Game id="game" mockData="{mock}"/>
 	
 	<!-- Controllers -->
 	<control:Actions id="actions" 
