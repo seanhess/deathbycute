@@ -26,7 +26,15 @@
 		</model:character>
 	</model:Player>
 	
-	<view:GameView id="game" visible="false"/>
+	<view:GameView id="game" visible="false" game="{game}"/>
 	<view:LoginView id="login" fight="onFight()"/>
+
+	<!-- MODEL -->	
+	<test:MockData id="mock"/>
+	<model:Game id="game" mockData="{mock}"/>
+	
+	<!-- SHARING -->
+	
+
 	
 </mx:Canvas>

@@ -11,16 +11,15 @@
 	>
 	<mx:Script>
 		<![CDATA[
+			import net.seanhess.deathbycute.model.Game;
 			import assets.Other;
 			import net.seanhess.deathbycute.model.Token;
 			import assets.Characters;
+			
+			[Bindable] public var game:Game;
 		]]>
 	</mx:Script>
-	
-	<!-- Model -->
-	<test:MockData id="mock"/>
-	<model:Game id="game" mockData="{mock}"/>
-	
+		
 	<!-- Controllers -->
 	<control:Actions id="actions" 
 		character="{game.currentPlayer.character}" 
