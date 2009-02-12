@@ -1,7 +1,5 @@
 package net.seanhess.deathbycute.model
 {
-	import assets.Weapons;
-	
 	public class Character extends Token
 	{
 		public static const ALIVE:String = "alive";
@@ -9,7 +7,9 @@ package net.seanhess.deathbycute.model
 		
 		public function Character()
 		{
-			this.weapon = new Weapon(Weapons.BUG);
+			this.weapon = new Weapon();
+			this.weapon.image = Images.BUG_PATH;
+			
 			this.state = ALIVE;
 		}
 		

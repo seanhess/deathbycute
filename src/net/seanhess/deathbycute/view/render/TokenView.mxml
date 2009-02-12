@@ -7,7 +7,7 @@
 	<mx:Script>
 		<![CDATA[
 			import net.seanhess.deathbycute.model.*;
-			import assets.Other;
+			import assets.TokenAssets;
 			
 			import mx.effects.easing.Linear;
 			public static const MS_PER_PIXEL:int = 1;
@@ -82,6 +82,15 @@
 //					(token as Weapon).owner.firing = null;
 //				}
 			}
+			
+			protected function set newImage(value:String):void
+			{
+				actualImage	= imageMap.images[value];
+			}
+			
+			[Bindable] public var actualImage:Class;
+			
+			public var imageMap:Images = new Images();
 				
 		]]>
 	</mx:Script>
@@ -89,10 +98,11 @@
 	<mx:Number id="hitSize">{token is Weapon ? 25 : 40}</mx:Number>
 	<mx:Binding source="token.destination" destination="destination"/>
 	<mx:Binding source="token.state" destination="state"/>
+	<mx:Binding source="token.image" destination="newImage"/>
 	
-	<mx:Image source="{token.image}" alpha="{(token.state == Character.DEAD) ? 0.6 : 1}"/>
-	<mx:Image source="{Other.DEATH_EYES}" visible="{token.state == Character.DEAD}"/>
-	<mx:Image source="{Other.TIMER}" visible="{token.state == Weapon.BLOCKED}" verticalCenter="0" horizontalCenter="0"/>
+	<mx:Image source="{actualImage}" alpha="{(token.state == Character.DEAD) ? 0.6 : 1}"/>
+	<mx:Image source="{TokenAssets.DEATH_EYES}" visible="{token.state == Character.DEAD}"/>
+	<mx:Image source="{TokenAssets.TIMER}" visible="{token.state == Weapon.BLOCKED}" verticalCenter="0" horizontalCenter="0"/>
 	<mx:Canvas id="hit" width="{hitSize}" height="{hitSize}" backgroundColor="#0000FF" backgroundAlpha="0" verticalCenter="0" horizontalCenter="0"/>
 	
 	<mx:Parallel id="animate" target="{this}" effectEnd="onEnd()">

@@ -1,11 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Object xmlns:mx="http://www.adobe.com/2006/mxml">
+<mx:Object xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sharedModel="com.adobe.rtc.sharedModel.*" xmlns:ns="CocomoNameSpace">
 
 	<mx:Script>
 		<![CDATA[
-			[Bindable] public var game:Game;
+			import mx.events.CollectionEvent;
+			import mx.events.CollectionEventKind;
+		
+			public function subscribe():void
+			{
+				session.login();
+				node.subscribe();
+				collection.subscribe();
+			}
+		
+			[Bindable]
+			public function set game(value:Game):void
+			{
+				_game = value;
+				subscribe();
+				listenForTokenChanges();
+			}
+			
+			public function get game():Game
+			{
+				return _game;
+			}
+			
+			protected var _game:Game;
+			
+			// The only change I want to listen for on my side is when a player is added or killed, right? // 
+			protected function listenForTokenChanges():void
+			{
+				game.tokens.addEventListener(CollectionEvent.COLLECTION_CHANGE, onTokenChange);
+				
+			}
+			
+			protected function onTokenChange(event:CollectionEvent):void
+			{
+				// when we add the new guy 
+				// We need an ID!
+				if (event.kind == CollectionEventKind.ADD)
+					collection.addItem(getServerToken(event.items[0])); // we don't care about the order
+					
+				else if (event.kind == CollectionEventKind.UPDATE) // updates to location and death
+				{
+					var asdf:*;
+				}
+			}
+			
+			protected function getServerToken(source:Token):Token
+			{
+				var newToken:Token = new Token();
+					newToken.uid = source.uid;
+					newToken.image = null;
+					newToken.state = source.state;
+					newToken.destination = source.destination;
+					newToken.location = source.location;
+					
+				return newToken;
+			}
 		]]>
 	</mx:Script>
 	
-
+	<!-- Authenticator -->
+	<ns:AdobeHSAuthenticator id="admin" userName="seanhess@gmail.com" password="cocomo"/>
+	
+	<!-- Connect Session -->
+	<ns:ConnectSession id="session" 
+		authenticator="{admin}"
+		roomURL="http://connectnow.acrobat.com/seanhessnet/deathbycute"
+	/>
+	
+	<!-- Colleciton Node -->
+	<sharedModel:CollectionNode id="node" sharedID="game"/>
+	
+	<sharedModel:SharedCollection id="collection" nodeName="testCollection" collectionNode="{node}"/>
+	
 </mx:Object>

@@ -3,30 +3,27 @@
 	xmlns:mx="http://www.adobe.com/2006/mxml" 
 	width="100%" height="100%" 
 	clipContent="false"
-	xmlns:view="net.seanhess.deathbycute.view.*" xmlns:model="net.seanhess.deathbycute.model.*">
+	xmlns:view="net.seanhess.deathbycute.view.*" xmlns:model="net.seanhess.deathbycute.model.*" xmlns:test="net.seanhess.deathbycute.test.*">
 
 	<mx:Script>
 		<![CDATA[
 			protected function onFight():void
 			{
-				game.visible = true;
+				gameView.visible = true;
 				login.visible = false;
 				
-				// Add me to the current list of tokens // 
-				
-				// I also need to set the game data at this point, and connect to the server //
-				game.game.currentPlayer = player; 
+				game.currentPlayer = player;
 			}
 		]]>
 	</mx:Script>	
 	
 	<model:Player id="player" name="{login.playerName}">
 		<model:character>
-			<model:Character image="{login.selectedCharacter.icon}"/>
+			<model:Character image="{login.selectedCharacter.image}"/>
 		</model:character>
 	</model:Player>
 	
-	<view:GameView id="game" visible="false" game="{game}"/>
+	<view:GameView id="gameView" visible="false" game="{game}"/>
 	<view:LoginView id="login" fight="onFight()"/>
 
 	<!-- MODEL -->	
@@ -34,7 +31,5 @@
 	<model:Game id="game" mockData="{mock}"/>
 	
 	<!-- SHARING -->
-	
-
-	
+	<!--<model:Sharing game="{game}"/>-->
 </mx:Canvas>

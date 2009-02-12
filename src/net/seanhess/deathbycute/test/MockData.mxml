@@ -4,15 +4,16 @@
 	<mx:Script>
 		<![CDATA[
 			import assets.*;
+			import net.seanhess.deathbycute.model.Images;
 			import flash.geom.Point;
 		]]>
 	</mx:Script>
 	
 	<!-- Start out with two tokens = characters -->
 	<mx:ArrayCollection id="tokens">
-		<model:Character id="boy" image="{Characters.BOY}" location="{new Point(256,400)}"/>
-		<model:Weapon id="testWeapon" image="{Weapons.BUG}" location="{new Point(700,100)}"/>
-		<model:Character id="girl" image="{Characters.HORN_GIRL}" location="{new Point(600,400)}"/>
+		<model:Character id="boy" 		image="{Images.BOY_PATH}" 		location="{new Point(256,400)}"/>
+		<model:Weapon id="testWeapon" 	image="{Images.BUG_PATH}" 		location="{new Point(700,100)}"/>
+		<model:Character id="girl" 		image="{Images.HORN_GIRL_PATH}" location="{new Point(600,400)}"/>
 	</mx:ArrayCollection>
 	
 	<mx:ArrayCollection id="players">

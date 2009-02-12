@@ -10,7 +10,8 @@
 	
 	<mx:Script>
 		<![CDATA[
-			import assets.Characters;
+			import assets.TokenAssets;
+			import net.seanhess.deathbycute.model.Images;
 		]]>
 	</mx:Script>
 	
@@ -21,11 +22,11 @@
 	<mx:String id="playerName"/>
 	
 	<mx:ArrayCollection id="options">
-		<mx:Object label="Andre" icon="{Characters.BOY}"/>
-		<mx:Object label="Lulula" icon="{Characters.CAT_GIRL}"/>
-		<mx:Object label="Amelia" icon="{Characters.HORN_GIRL}"/>
-		<mx:Object label="Rose" icon="{Characters.PINK_GIRL}"/>
-		<mx:Object label="Blueberry" icon="{Characters.PRINCESS_GIRL}"/>
+		<mx:Object label="Andre" 		image="{Images.BOY_PATH}"			icon="{TokenAssets.BOY}"/>
+		<mx:Object label="Lulula" 		image="{Images.CAT_GIRL_PATH}"		icon="{TokenAssets.CAT_GIRL}"/>
+		<mx:Object label="Amelia" 		image="{Images.HORN_GIRL_PATH}"		icon="{TokenAssets.HORN_GIRL}"/>
+		<mx:Object label="Rose" 		image="{Images.PINK_GIRL_PATH}"		icon="{TokenAssets.PINK_GIRL}"/>
+		<mx:Object label="Blueberry" 	image="{Images.PRINCESS_GIRL_PATH}"	icon="{TokenAssets.PRINCESS_GIRL}"/>
 	</mx:ArrayCollection>
 
 	<mx:Image source="assets/image/stripes.jpg" width="100%" height="100%" maintainAspectRatio="false"/>
